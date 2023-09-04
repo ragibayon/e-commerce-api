@@ -1,11 +1,7 @@
-const User = require('../models/User');
-const {
-  BadRequestError,
-  CustomAPIError,
-  UnauthenticatedError,
-} = require('../errors');
 const {StatusCodes} = require('http-status-codes');
-const {attachCookiesToResponse} = require('../utils');
+const User = require('../models/User');
+const {attachCookiesToResponse, createTokenUser} = require('../utils');
+const {BadRequestError, UnauthenticatedError} = require('../errors');
 
 const register = async (req, res, next) => {
   const {name, email, password} = req.body;
@@ -30,11 +26,7 @@ const register = async (req, res, next) => {
 
   const user = await newUser.save();
 
-  const userToken = {
-    name: user.name,
-    userId: user._id,
-    role: user.role,
-  };
+  const userToken = createTokenUser(user);
   attachCookiesToResponse({res: res, user: userToken});
   res.status(StatusCodes.CREATED).json({user: userToken});
 };
@@ -55,12 +47,7 @@ const login = async (req, res, next) => {
     throw new UnauthenticatedError('Invalid credentials');
   }
 
-  const userToken = {
-    name: user.name,
-    userId: user._id,
-    role: user.role,
-  };
-
+  const userToken = createTokenUser(user);
   attachCookiesToResponse({res: res, user: userToken});
   res.status(StatusCodes.OK).json({user: userToken});
 };

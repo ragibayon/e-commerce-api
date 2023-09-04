@@ -74,7 +74,7 @@
 
 - [x] require 'jsonwebtoken' package
 - [x] create jwt - jwt.sign(payload,secret,options)
-- [] verify jwt - jwt.verify(token,secret) should be in auth middleware
+- [x] verify jwt - jwt.verify(token,secret) should be in auth middleware
 - [x] add variables in .env JWT_SECRET=jwtSecret and JWT_LIFETIME=1d
 - [x] restart the server !!!!
 - [x] refactor code, create jwt functions in utils
@@ -94,25 +94,25 @@
 
 #### Logout Route
 
-- [] set token cookie equal to some string value
-- [] set expires:new Date(Date.now())
+- [x] set token cookie equal to some string value
+- [x] set expires:new Date(Date.now())
 
 #### User Routes Structure
 
-- [] add userController file
-- [] export (getAllUsers,getSingleUser,showCurrentUser,updateUser,updateUserPassword) functions
-- [] res.send('some string value')
-- [] setup userRoutes file
-- [] import all controllers
-- [] setup just one route - router.route('/').get(getAllUsers);
-- [] import userRoutes as userRouter in the app.js
-- [] setup app.use('/api/v1/users', userRouter)
+- [x] add userController file
+- [x] export (getAllUsers,getSingleUser,showCurrentUser,updateUser,updateUserPassword) functions
+- [x] res.send('some string value')
+- [x] setup userRoutes file
+- [x] import all controllers
+- [x] setup just one route - router.route('/').get(getAllUsers);
+- [x] import userRoutes as userRouter in the app.js
+- [x] setup app.use('/api/v1/users', userRouter)
 
 #### GetAllUsers and GetSingleUser
 
-- [] Get all users where role is 'user' and remove password
-- [] Get Single User where id matches id param and remove password
-- [] If no user 404
+- [x] Get all users where role is 'user' and remove password
+- [x] Get Single User where id matches id param and remove password
+- [x] If no user 404
 
 #### Authenticate User Setup
 
@@ -120,43 +120,43 @@
 
 #### Authorize Permissions Setup
 
-- [] hardcode
+- [x] hardcode
 
 #### Authorize Permissions Complete
 
-- [] introduce params
+- [x] introduce params
 
 #### ShowCurrentUser
 
-- [] get user from req
-- [] send response with user
+- [x] get user from req
+- [x] send response with user
 
 #### UpdateUserPassword
 
-- [] almost identical to login user
-- [] add authenticateUser middleware in the route
-- [] check for oldPassword and newPassword in the body
-- [] if one missing 400
-- [] look for user with req.user.userId
-- [] check if oldPassword matches with user.comparePassword
-- [] if no match 401
-- [] if everything good set user.password equal to newPassword
-- [] await user.save()
+- [x] almost identical to login user
+- [x] add authenticateUser middleware in the route
+- [x] check for oldPassword and newPassword in the body
+- [x] if one missing 400
+- [x] look for user with req.user.userId
+- [x] check if oldPassword matches with user.comparePassword
+- [x] if no match 401
+- [x] if everything good set user.password equal to newPassword
+- [x] await user.save()
 
 #### createTokenUser in Utils
 
-- [] create a file in utils (createTokenUser)
-- [] setup a function that accepts user object and returns userToken object
-- [] export as default
-- [] setup all the correct imports/exports and refactor existing code
+- [x] create a file in utils (createTokenUser)
+- [x] setup a function that accepts user object and returns userToken object
+- [x] export as default
+- [x] setup all the correct imports/exports and refactor existing code
 
 #### updateUser with User.findOneAndUpdate()
 
-- [] add authenticateUser middleware in the route
-- [] check for name and email in the body
-- [] if one is missing, send 400 (optional)
-- [] use findOneAndUpdate()
-- [] create token user, attachCookiesToResponse and send back the tokenUser
+- [x] add authenticateUser middleware in the route
+- [x] check for name and email in the body
+- [x] if one is missing, send 400 (optional)
+- [x] use findOneAndUpdate()
+- [x] create token user, attachCookiesToResponse and send back the tokenUser
 
 #### updateUser with user.save()
 

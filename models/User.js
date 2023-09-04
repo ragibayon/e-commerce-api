@@ -30,7 +30,9 @@ const UserSchema = new mongoose.Schema({
 });
 
 UserSchema.pre('save', async function () {
-  this.password = await bcrypt.hash(this.password, 10);
+  // or else in update the password will be re-hashed
+  if (this.isModified('password'))
+    this.password = await bcrypt.hash(this.password, 10);
 });
 
 UserSchema.methods.comparePassword = async function (candidatePassword) {
