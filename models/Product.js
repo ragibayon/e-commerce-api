@@ -66,8 +66,25 @@ const ProductSchema = new mongoose.Schema(
   },
   {
     timestamps: true,
+    toJSON: {virtuals: true},
+    toObject: {virtuals: true},
   }
 );
+
+// from the review model, I want to match the id of the product field to the id of the product model.
+ProductSchema.virtual('reviews', {
+  ref: 'Review', // model name
+  foreignField: 'product', // from review model's product field
+  localField: '_id', // the _id of the product model will be matched with the value of the "product" field in review model
+  justOne: false,
+  // match: {rating: 5}, // only the products with review of 5
+});
+
+ProductSchema.pre('remove', async function (next) {
+  // from product model delete reviews from review model
+  await this.model('Review').deleteMany({product: this._id});
+  next();
+});
 
 const Product = mongoose.model('Product', ProductSchema);
 

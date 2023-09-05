@@ -22,7 +22,7 @@ const getAllProducts = async (req, res, next) => {
 
 const getSingleProduct = async (req, res, next) => {
   const pid = req.params.id;
-  const product = await Product.findOne({_id: pid});
+  const product = await Product.findOne({_id: pid}).populate('reviews'); // reviews is from virtuals
 
   if (!product) {
     throw new NotFoundError('Product not found');
@@ -55,7 +55,7 @@ const deleteProduct = async (req, res, next) => {
   if (!product) {
     throw new NotFoundError('Product not found');
   }
-  await product.remove();
+  await product.remove(); // for remove hook to delete all the reviews
   res.status(StatusCodes.OK).json({
     msg: 'product deleted',
   });
