@@ -25,7 +25,8 @@ const createReview = async (req, res, next) => {
 
   // new review
   req.body.user = req.user.userId;
-  const review = await Review.create(req.body);
+  const review = await Review.create(req.body); // calls pre save hook
+
   res.status(StatusCodes.CREATED).json({
     msg: 'review created',
   });
