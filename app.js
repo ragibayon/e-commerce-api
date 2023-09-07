@@ -37,16 +37,11 @@ app.use(helmet());
 app.use(xss());
 app.use(mongoSanitize());
 
-app.use(morgan('tiny'));
 app.use(express.json());
 app.use(cookieParser(process.env.JWT_SECRET)); // signed cookies
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(fileUpload());
-
-app.get('/', (req, res, next) => {
-  res.send('Welcome to e-commerce api');
-});
 
 app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/users', userRouter);
